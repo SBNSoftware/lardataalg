@@ -18,6 +18,7 @@
 #include "lardataalg/DetectorInfo/DetectorProperties.h"
 #include "lardataalg/DetectorInfo/DetectorPropertiesData.h"
 #include "lardataalg/DetectorInfo/LArProperties.h"
+#include "larcoreobj/SimpleTypesAndConstants/PhysicalConstants.h"
 
 // framework libraries
 #include "fhiclcpp/ParameterSet.h"
@@ -115,6 +116,18 @@ namespace detinfo {
         false};
 
       fhicl::Atom<bool> SimpleBoundary{Name("SimpleBoundaryProcess"), Comment("")};
+
+      fhicl::Atom<double> ModBoxAlpha {
+        Name("ModBoxAlpha"),
+        Comment("alpha parameter in the Modified Box recombination moddel."),
+        util::kModBoxA
+      };
+
+      fhicl::Atom<double> ModBoxBeta {
+        Name("ModBoxBeta"),
+        Comment("beta parameter in the Modified Box recombination moddel."),
+        util::kModBoxB
+      };
 
     }; // Configuration_t
 
@@ -297,6 +310,9 @@ namespace detinfo {
     std::vector<std::vector<double>> fDriftDirection;
 
     bool fSimpleBoundary;
+
+    double fModBoxA;
+    double fModBoxB;
 
   }; // class DetectorPropertiesStandard
 } // namespace detinfo
